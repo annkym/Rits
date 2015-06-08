@@ -1,33 +1,30 @@
 from subprocess import call
-#from git import Repo
+from git import Repo
 import time, json
 
 def cloneRepo(url, path):
-	##Clonar repositorio (Inicializarlo) (url - URL del repo) (path - Directorio donde se baja)
-	print "Clonando Repositorio " + url
-#	repoCloned = Repo.clone_from(url, path)
-#	print repoCloned.git.status()
-	print "Repositorio creado correctamente en " + path
+	##clone repository (url - Repo's URL) (path - Repo's path)
+	print "Clone Repository " + url
+	repoCloned = Repo.clone_from(url, path)
+	print repoCloned.git.status()
+	print "Repository created at " + path
 
 def createTask(sc, mo, tr, tn):
-	##Crear tarea windows (SC - MINUTE, HOURLY, DAILY, WEEKLY) (MO - Numero) (TR - Ruta del exe) (TN - Nombre de la tarea)
-	print "Creando tarea"
+	##Create windows task (SC - MINUTE, HOURLY, DAILY, WEEKLY) (MO - Number of minutes, hours...) 
+	##(TR - Path to exe) (TN - Task name)
+	print "Create task"
 	call(["schtasks", "/CREATE", "/SC", sc, "/MO", mo, "/TN", tn, "/TR", tr])
-	print "Tarea " + tn + " creada exitosamente"
+	print "Task " + tn + " created"
 	
 def deleteTask(tn):
-	##Borrar tarea de windows (TN - Nombre de la tarea)
-	print "Borrando tarea"
+	##Delete windows task (TN - Task name)
+	print "Delete task"
 	call(["schtasks", "/DELETE", "/TN", tn, "/F"])
-	print "Tarea " + tn + " borrada exitosamente"
+	print "Task " + tn + " deleted"
 	
 	
 if __name__ == "__main__" :
-	
-	##Prepare message
-	message = time.strftime("%x") 
-	message += " at "
-	message += time.strftime("%X")
+
 	##Read parameters from json file
 	params = json.loads(open("config.json").read())
 	try:
@@ -41,9 +38,8 @@ if __name__ == "__main__" :
 		taskName = params["taskName"]
 		##Clone repository
 		#cloneRepo(url, path)
+		##Check repository
 		#checkRepo(path)
-		##Add files
-		#addFileToRepo(path, files, "Last Updated : " + message)
 		##Create Windows Task
 		createTask(schedule, time, exePath, taskName)
 	except KeyError:
