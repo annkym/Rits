@@ -1,6 +1,10 @@
 {
-	"ruta" : "/Users/angelica/FirstCityHall",
+	"ruta" : "C:\\Pruebas\\repo",
 	"usr" : "annkym",
 	"url" : "https://github.com/annkym/FirstCityHall.git",
-	"files" : "*.txt"
+	"files" : "*.txt",
+	"schedule" : "MINUTE",
+	"time" : "3",
+	"exePath" : "C:\\Users\\IEUser\\Documents\\Python\\dist\\prueba.exe",
+	"taskName" : "Mi tarea"
 }
