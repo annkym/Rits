@@ -1,6 +1,6 @@
 from subprocess import call
 from git import Repo
-import time, json
+import json
 
 def cloneRepo(url, path):
 	##clone repository (url - Repo's URL) (path - Repo's path)
@@ -37,9 +37,7 @@ if __name__ == "__main__" :
 		exePath = params["exePath"]
 		taskName = params["taskName"]
 		##Clone repository
-		#cloneRepo(url, path)
-		##Check repository
-		#checkRepo(path)
+		cloneRepo(url, path)
 		##Create Windows Task
 		createTask(schedule, time, exePath, taskName)
 	except KeyError:

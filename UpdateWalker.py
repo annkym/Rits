@@ -1,4 +1,4 @@
-from git import Repo, Remote
+from git import Repo
 import time, json
 
 def checkRepo(repoName):
@@ -39,10 +39,8 @@ if __name__ == "__main__" :
 	try:
 		path = param["path"]
 		user = param["usr"]
-		url = param["url"]
 		files = param["files"]
-		cloneRepo(url, path)
 		#checkRepo(path)
-		#addFileToRepo(path, files, "Updated on " + message)
+		addFileToRepo(path, files, "Updated on " + message)
 	except KeyError:
 		print "Config file problem..."
