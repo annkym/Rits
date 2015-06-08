@@ -31,7 +31,7 @@ if __name__ == "__main__" :
 	##Read parameters from json file
 	params = json.loads(open("config.json").read())
 	try:
-		path = params["ruta"]
+		path = params["path"]
 		user = params["usr"]
 		url = params["url"]
 		files = params["files"]
