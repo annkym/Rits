@@ -1,10 +1,1 @@
-{
-	"path" : "C:\\Pruebas\\repo",
-	"usr" : "annkym",
-	"url" : "https://github.com/annkym/FirstCityHall.git",
-	"files" : "*.txt",
-	"schedule" : "MINUTE",
-	"time" : "3",
-	"exePath" : "C:\\Users\\IEUser\\Documents\\Python\\dist\\prueba.exe",
-	"taskName" : "Mi tarea"
-}
+{"files": "*.txt", "schedule": "HOURLY", "url": "https://annkym:Angie123@github.com/annkym/FirstCityHall.git", "exePath": "python C:\\src\\prueba.py", "usr": "annkym", "time": "1", "path": "C:\\MyRepo\\", "taskName": "Walk upload task", "email": "annkym@gmail.com"}

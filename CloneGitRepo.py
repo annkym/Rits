@@ -62,7 +62,11 @@ class InstallerWidget(QtGui.QWidget):
         self.lbUsr = QtGui.QLabel('User : ')
         self.leUsr = QtGui.QLineEdit()
         self.leUsr.setText(params["usr"])
-        
+
+        self.lbEmail = QtGui.QLabel('E-mail : ')
+        self.leEmail = QtGui.QLineEdit()
+        self.leEmail.setText(params["email"])        
+
         self.lbUrl = QtGui.QLabel('Url : ')
         self.leUrl = QtGui.QLineEdit()
         self.leUrl.setText(params["url"])
@@ -101,6 +105,10 @@ class InstallerWidget(QtGui.QWidget):
         layout.addWidget(self.lbUsr)
         layout.addWidget(self.leUsr)
 
+        layout.addWidget(self.lbEmail)
+        layout.addWidget(self.leEmail)
+
+
         layout.addWidget(self.lbUrl)
         layout.addWidget(self.leUrl)
 
@@ -133,6 +141,7 @@ class InstallerWidget(QtGui.QWidget):
          self.setEnabled(False)
          params["path"] = self.lePath.text()
          params["usr"] = self.leUsr.text()
+         params["email"] = self.leEmail.text()
          params["url"] = self.leUrl.text()
          params["files"] = self.leFiles.text()
          params["schedule"] = self.cbSch.currentText()
@@ -144,6 +153,7 @@ class InstallerWidget(QtGui.QWidget):
          messageText = "<font color=blue size=5>Saving Configuration ... OK <br>"
          if(cloneRepo(params["url"], params["path"])):
              messageText += "Creating repository ... OK <br>"
+             setGitUser(params["usr"], params["email"])
          else:
              messageText += "Creating repository ... <br> <font color= red>Already created or connection problem <br>"
              messageText += "Please check if <b>" + params["path"] +"</b> exists</font><br>"
@@ -184,7 +194,12 @@ def deleteTask(tn):
 def checkTask(tn):
 ##Check if Task exists (TN - Task name)
 	return call(["schtasks", "/QUERY", "/TN", tn])
-	
+
+def setGitUser(usr, email):
+## Set the git user and email
+		call(["git", "config", "--global", "user.name", '"' + usr + '"' ])
+		call(["git", "config", "--global", "user.email", '"' + email + '"' ])
+
 if __name__ == '__main__':
 ## Main
     try:
